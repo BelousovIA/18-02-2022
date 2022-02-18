@@ -1,0 +1,83 @@
+#include <iostream>
+
+using namespace std;
+
+const int LNAME = 25;
+
+class STUDENT {
+
+private:                                                // закрытые члены класса
+	char name[LNAME];
+	int age;
+	float grade;
+public:                                                 //открытые члены класса
+	STUDENT() {                         
+		for (int i = 0; i <= 25; i++) {
+			name[i] = 0;                               //конструктор класса
+		}
+	    age = 0;
+		grade = 0;
+	}
+	char* GetName() {                                 //получение имени
+		return name;
+	};
+	int GetAge() const {                             //получение возраста
+		return age; 
+	};
+	float GetGrade() const {                        //получение рейтинга
+		return grade;
+	};
+	void SetName(char* name) {                     //установка имени
+		int i = 0;
+		while (*name != 0) {
+        this->name[i] = *name; 
+			name++; 
+			i++;
+		}
+	};
+	void SetAge(int age) {                         //установка возраста
+		 this -> age = age;
+	};
+	void SetGrade(float grade) {                   //установка рейтинга 
+	this -> grade = grade;
+	};
+	void Set(char* name, int age, float greade) {  // установка всех трех полей
+		int i = 0;
+		while (*name != 0) {
+			name[i] = *name;
+			name++;
+			i++;
+		}
+	};
+	void Show() {   // отображение информации о студенте 
+		setlocale(LC_ALL, "Russian");
+		cout << "Имя студентa: " <<name<<endl;
+		cout << "Возраст студентa: " <<age<< endl;
+		cout << "Рейтинг студента: " <<grade<<endl;
+	};
+}; 
+int main() {
+	STUDENT student;
+	setlocale(LC_ALL, "Russian");
+	char name[LNAME];
+	int age;
+	float grade;
+	cout << "Введите имя студента. Максимальное количество симовлов - 24 ";   //вывод результатов, проверка каждого метода(функции)
+	cin >> name;
+	cout << "Введите возраст студента: ";
+	cin >> age;
+	cout << "Введите рейтинг студента: ";
+	cin >> grade;
+	cout << endl;
+	student.SetName(name);
+	student.SetAge(age);
+	student.SetGrade(grade);
+    cout << "-------------" << endl;
+	cout << "Имя студента: " << student.GetName() << endl;
+	cout << "Возраст студента: " << student.GetAge() << endl;
+	cout << "Рейтинг студента: " << student.GetGrade() << endl;
+	cout << "-------------" << endl << "Работа метода Show:" << endl;
+	student.Set(name, age, grade);
+	student.Show();
+
+}
